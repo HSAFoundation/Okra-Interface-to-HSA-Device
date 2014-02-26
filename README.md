@@ -26,10 +26,10 @@ HSA-enabled GPUs.
 There are two pre-requisites that should be satisfied to successfuly use OKRA 
 runtime library and samples.
 	
-* A working setup of an HSA platform - Interested reader should refer to
-	(~/cite John's github)
-* Ubuntu 13.10 linux with HSA drivers - Interested reader should refer to
-	(~/cite John's git)
+* A working setup of an HSA platform
+* Ubuntu 13.10 linux with HSA drivers
+* Refer to instructions in  https://github.com/HSAFoundation/Linux-HSA-Drivers-And-Images-AMD
+  for both the pre-requisites
 
 #### To run OKRA samples:
 * $cd okra/samples
