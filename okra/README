@@ -26,10 +26,11 @@ Running OKRA samples
 There are two pre-requisites that should be satisfied to successfuly use OKRA 
 runtime library and samples.
 	
-	1. A working setup of an HSA platform - Interested reader should refer to
-	(~/cite John's public location)
-	2. Ubuntu 13.10 linux with HSA drivers - Interested reader should refer to
-	(~/cite John's public location)
+	1. A working setup of an HSA platform
+	2. Ubuntu 13.10 linux with HSA drivers
+
+	Refer to instructions in https://github.com/HSAFoundation/Linux-HSA-Drivers-And-Images-AMD
+	for both the pre-requisities.
 
 To run OKRA samples:
 	$cd okra/samples
