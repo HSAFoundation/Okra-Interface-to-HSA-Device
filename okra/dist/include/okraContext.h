@@ -42,7 +42,7 @@
 
 #ifndef OKRACONTEXT_H
 #define OKRACONTEXT_H
-#include "common.h"   // includes jni.h for jxxxx args
+#include "cCommon.h"
 
 // Abstract interface to an Okra Implementation
 class OkraContext{
@@ -95,7 +95,8 @@ public:
 	static bool getCoherence();
 
 private:
-	bool verbose;
+    bool verbose;
+    static OkraContext* m_pContext;
 };
 
 extern "C" DLLExport void * vqueryLargest(void *addr, size_t *pSize, bool show);

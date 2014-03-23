@@ -18,8 +18,16 @@ okra/dist/include
 
 OKRA samples:
 =============
-okra/samples/dist
-	Squares (along with Squares.hsail)
+okra/samples/src/cpp/Squares
+	Squares.cpp 
+	Squares.hsail
+	 
+Build OKRA samples:
+===================
+	$cd okra/samples
+	$./build.sh
+		 
+This will create okra/samples/dist and the binaries will be placed there
 
 Running OKRA samples
 ====================
@@ -33,6 +41,7 @@ runtime library and samples.
 	for both the pre-requisities.
 
 To run OKRA samples:
+====================
 	$cd okra/samples
 	$./runSquares.sh
 
