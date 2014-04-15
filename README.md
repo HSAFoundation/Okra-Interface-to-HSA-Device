@@ -30,13 +30,14 @@ This will create okra/samples/dist and the binaries will be placed there
 
 ### Running OKRA samples
 
-There are two pre-requisites that should be satisfied to successfuly use OKRA 
+There are three pre-requisites that should be satisfied to successfuly use OKRA 
 runtime library and samples.
 	
 * A working setup of an HSA platform
 * Ubuntu 13.10 linux with HSA drivers
 * Refer to instructions in  https://github.com/HSAFoundation/Linux-HSA-Drivers-And-Images-AMD
   for both the pre-requisites
+* Install binutils-dev package: sudo apt-get install binutils-dev
 
 #### To run OKRA samples:
 * $cd okra/samples
