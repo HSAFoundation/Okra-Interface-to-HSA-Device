@@ -1,7 +1,7 @@
 OKRA is a runtime library that enables applications to do compute offloads to 
 HSA-enabled GPUs.
 
-Note: Master branch always maps to the latest release - which is v0.5 at this point. For binaries from
+Note: Master branch always maps to the latest release - which is v0.6 at this point. For binaries from
 previous releases refer to other branches. You can do 'git branch -a' to see all
 branches or use the web interface in github.com.
 
@@ -46,9 +46,9 @@ There are some pre-requisites that should be satisfied to successfuly use OKRA
 runtime library and samples.
 	
 * A working setup of an HSA platform
-* Ubuntu 13.10 linux with HSA drivers
+* Ubuntu 13.10 or 14.04LTS linux with HSA drivers
 * Refer to instructions in  https://github.com/HSAFoundation/Linux-HSA-Drivers-And-Images-AMD
-  for both the pre-requisites (branch:master, kfd-v0.5)
+  for both the pre-requisites (branch:master, kfd-v0.6)
 * Install build-essential package: sudo apt-get install build-essential
 * Install libelf-dev package: sudo apt-get install libelf-dev
 
