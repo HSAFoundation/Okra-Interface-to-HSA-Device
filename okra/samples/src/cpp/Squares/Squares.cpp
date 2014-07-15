@@ -40,7 +40,7 @@
 // SOFTWARE.
 //===----------------------------------------------------------------------===//
 
-#include "okraContext.h"
+#include "okra.h"
 #include <iostream>
 #include <string>
 #include "utils.h"
@@ -73,32 +73,50 @@ int main(int argc, char *argv[]) {
 	string sourceFileName = "Squares.hsail";
 	char* squaresSource = buildStringFromSourceFile(sourceFileName);
 
-	OkraContext *context = OkraContext::Create();
-	if (context == NULL) {cout << "...unable to create context\n"; exit(-1);}
-	OkraContext::Kernel *kernel = context->createKernel(squaresSource, "&run");
-	if (kernel == NULL) {cout << "...unable to create kernel\n"; exit(-1);}
+    okra_status_t status;
+      
+        //create okra context
+	okra_context_t* context = NULL;
+        
+    status = okra_get_context(&context);
+        
+	if (status != OKRA_SUCCESS) {cout << "Error while creating context:" << (int)status << endl; exit(-1);}
+        
+    //create kernel from hsail
+    okra_kernel_t* kernel = NULL;        
 
-	// register calls may go away
-	context->registerArrayMemory(inArray, NUMELEMENTS * sizeof(float));       // only needed first time or if moved
-	context->registerArrayMemory(outArray,  NUMELEMENTS * sizeof(float));       // ditto
+    status = okra_create_kernel(context, squaresSource, "&run", &kernel);
 
-	kernel->clearArgs();
-	kernel->pushPointerArg(outArray);
-	kernel->pushPointerArg(inArray);
+	if (status != OKRA_SUCCESS) {cout << "Error while creating kernel:" << (int)status << endl; exit(-1);}
+        
+    //setup kernel arguments        
+    okra_clear_args(kernel);
+    okra_push_pointer(kernel, outArray);
+    okra_push_pointer(kernel, inArray);
 
-	size_t globalDims[] = {NUMELEMENTS};  // # of workitems, would need more elements for 2D or 3D range
-	size_t localDims[] = {NUMELEMENTS}; 
-	kernel->setLaunchAttributes(1, globalDims, localDims);  // 1 dimension
-
-	kernel->dispatchKernelWaitComplete();
+    //setup execution range
+    okra_range_t range;
+    range.dimension=1;
+    range.global_size[0] = NUMELEMENTS;
+    range.global_size[1] = range.global_size[2] = 1;
+    range.group_size[0] = NUMELEMENTS;
+    range.group_size[1] = range.group_size[2] = 1;
+        
+    //execute kernel and wait for completion
+    status = okra_execute_kernel(context, kernel, &range);
+    if(status != OKRA_SUCCESS) {cout << "Error while executing kernel:" << (int)status << endl; exit(-1);}
 
 	bool passed = true;
 	for (int i=0; i<NUMELEMENTS; i++) {
-		cout << i << "->" << outArray[i] << ",  ";
-		if (outArray[i] != i*i) passed = false;
+	   cout << i << "->" << outArray[i] << ",  ";
+	   if (outArray[i] != i*i) passed = false;
 	}
-	
-	cout << endl << (passed ? "PASSED" : "FAILED") << endl;
-	
+
+ 	cout << endl << (passed ? "PASSED" : "FAILED") << endl;
+
+    //dispose okra resources
+	okra_dispose_kernel(kernel);
+    okra_dispose_context(context);
+ 	
 	return 0;
 }

@@ -5,6 +5,8 @@ Note: Master branch always maps to the latest release - which is v0.6 at this po
 previous releases refer to other branches. You can do 'git branch -a' to see all
 branches or use the web interface in github.com.
 
+New: OKRA has a C interface now. check out okra.h.
+
 ### Downloading OKRA and its binaries:
 There are two ways of doing this. 
 * One is through github.com web interface. Choose the branch and then click 'Download Zip' to get the zip.
@@ -26,11 +28,11 @@ There are two ways of doing this.
 ### OKRA public headers:
 
 #### okra/dist/include
-* okraContext.h
+* okra.h
 
 ### OKRA samples:
 
-#### okra/samples/src/cpp/Squares
+#### okra/samples/src/cpp/Squares (updated to use okra.h)
 * Squares.cpp
 * Squares.hsail
 
