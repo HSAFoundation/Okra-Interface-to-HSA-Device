@@ -57,7 +57,7 @@ runtime library and samples.
 * Download HSA Runtime libraries from repo: https://github.com/HSAFoundation/HSA-Runtime-AMD
 * Install build-essential package: sudo apt-get install build-essential
 * Install libelf-dev package: sudo apt-get install libelf-dev
-* Setup the ENVIRONMENT by editing the following variables in okra/samples/env.sh (also see comments in env.sh)
+* Setup the ENVIRONMENT by editing the following variables in **okra/samples/env.sh** (also see comments in env.sh)
     * HSA\_OKRA\_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/Okra-Interface-to-HSA-Device
     * HSA\_RUNTIME\_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Runtime-AMD
     * HSA\_KMT\_PATH: This should point to libhsakmt directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Drivers-Linux-AMD/tree/master/kfd-0.8/libhsakmt
