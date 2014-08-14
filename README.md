@@ -83,6 +83,8 @@ The test should pass
 
 ### FAQs
 
+* I see build errors while doing ./build.sh
+    * Answer: Check the Environment variables setup in okra/samples/env.sh. Each variable should be setup as instructed in the comment above it.
 * I keep getting an error saying 'error while loading shared libraries: libokra\_x86\_64.so: cannot open shared object file: No such file or directory'. 
     * Answer: The libokra\_x86\_64.so library directory isn't in the LD\_LIBRARY\_PATH or the version of libokra\_x86\_64.so is incorrect.
 * I keep getting an error saying 'error while loading shared libraries: libhsa-runtime64.so.1: cannot open shared object file: No such file or directory'. 
