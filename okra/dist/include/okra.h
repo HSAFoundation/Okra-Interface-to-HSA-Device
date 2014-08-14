@@ -1,3 +1,45 @@
+// University of Illinois/NCSA
+// Open Source License
+// 
+// Copyright (c) 2013, Advanced Micro Devices, Inc.
+// All rights reserved.
+// 
+// Developed by:
+// 
+//     Runtimes Team
+// 
+//     Advanced Micro Devices, Inc
+// 
+//     www.amd.com
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy of
+// this software and associated documentation files (the "Software"), to deal with
+// the Software without restriction, including without limitation the rights to
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+// of the Software, and to permit persons to whom the Software is furnished to do
+// so, subject to the following conditions:
+// 
+//     * Redistributions of source code must retain the above copyright notice,
+//       this list of conditions and the following disclaimers.
+// 
+//     * Redistributions in binary form must reproduce the above copyright notice,
+//       this list of conditions and the following disclaimers in the
+//       documentation and/or other materials provided with the distribution.
+// 
+//     * Neither the names of the LLVM Team, University of Illinois at
+//       Urbana-Champaign, nor the names of its contributors may be used to
+//       endorse or promote products derived from this Software without specific
+//       prior written permission.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+// CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
+// SOFTWARE.
+//===----------------------------------------------------------------------===//
+
 /*
 OKRA Runtime C interface
 */
@@ -55,10 +97,9 @@ typedef enum okra_status_t {
    OKRA_KERNEL_ELF_INITIALIZATION_FAILED,
    OKRA_KERNEL_INVALID_ELF_CONTAINER,
    OKRA_KERNEL_INVALID_SECTION_HEADER,
-   OKRA_KERNEL_MISSING_STRING_SECTION,
-   OKRA_KERNEL_MISSING_DIRECTIVE_SECTION,
+   OKRA_KERNEL_MISSING_DATA_SECTION,
    OKRA_KERNEL_MISSING_CODE_SECTION,
-   OKRA_KERNEL_MISSING_OPERANDS_SECTION,
+   OKRA_KERNEL_MISSING_OPERAND_SECTION,
    OKRA_KERNEL_MISSING_DEBUG_SECTION,
    OKRA_LOAD_BRIG_FAILED,
    OKRA_UNLOAD_BRIG_FAILED,
@@ -130,7 +171,18 @@ okra_status_t OKRA_API okra_clear_args(okra_kernel_t* kernel);
 
 //execute the kernel - takes kernel, execution range as input
 //This is a synchronous call - returns only after kernel completion
-//If the user pass 0's for group size, the runtime will choose one
+//Dimensions:
+//assert(range->dimension >=1 && range->dimension <=3)
+//Global Size:
+// 0 for global size any dimension is invalid, should be atleast 1. 
+//Group size:
+//For instance, this is valid: group_size[0]=x;group_size[1]=y;group_size[2] = z; where x,y,z is >=1
+//However assert(group_size[0] * group_size[1] * group_size[2] <= 2048)
+//This is valid too: group_size[0]=group_size[1]=group_size[2]=0; - runtime will choose an 
+//appropriate size in this case, depending on the number of dimensions
+//This set of input is invalid: If dimension=2, then group_size[0]=256, group_size[1]=group_size[2]=0;
+//Either pass required group_size for each valid dimension or let the runtime choose group size for each
+//valid dimension
 okra_status_t OKRA_API okra_execute_kernel(okra_context_t* context, okra_kernel_t* kernel, okra_range_t* range);
 
 //cleanup kernel

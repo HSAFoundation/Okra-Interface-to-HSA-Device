@@ -1,2 +1,3 @@
-cd dist;  LD_LIBRARY_PATH=../../dist/bin ./Squares
+. env.sh
+cd dist;  ./Squares
 
