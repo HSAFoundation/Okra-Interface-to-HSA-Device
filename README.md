@@ -14,12 +14,12 @@ and HSA KMT library (libhsakmt.so.1) anymore. Since the HSA Runtime Programmer's
 and the corresponding libraries are hosted separately. For HSA Runtime headers and libraries, see: https://github.com/HSAFoundation/HSA-Runtime-AMD.
 For HSA KMT library, see: https://github.com/HSAFoundation/HSA-Drivers-Linux-AMD. See libhsakmt directory.
 - As a result of above, there are changes in the instructions of how to build and run OKRA Squares sample.
-- Environment variable: OKRA_DISABLE_FIX_HSAIL. HSA Programmer's Reference Manual 1.0P specification has been released recently. Refer to
+- Environment variable: OKRA\_DISABLE\_FIX\_HSAIL. HSA Programmer's Reference Manual 1.0P specification has been released recently. Refer to
 https://github.com/HSAFoundation/HSA-docs-AMD/wiki for documentation. However, all users of OKRA have not upgraded their code
-generation to 1.0P HSAIL. That is, some customers may still be using 0.95 spec. For those customers who do not yet generate 1.0P instructions (which is the majority today),
+generation to 1.0P HSAIL. That is, some customers are still generating 0.95 HSAIL. For those customers who do not yet generate 1.0P instructions (which is the majority today),
 OKRA fixes the hsail instructions to match up to 1.0P instructions. Note that, this is not a universal fix for all possible instructions. This
-has been done only for a known set of tests from what we have seen before from our customers (see known issues). But, if the OKRA user is already generating 1.0P HSAIL instructions
-then, they should disable OKRA from doing any fixup. They can do so by setting environment variable OKRA_DISABLE_FIX_HSAIL=1
+has been done only for a known set of tests from what we have seen before from our customers (see known issues). But, if the OKRA user is already generating 1.0P HSAIL instructions,
+then they should disable OKRA from doing any fixup. They can do so by setting environment variable OKRA\_DISABLE\_FIX\_HSAIL=1
 
 ### Downloading OKRA and its binaries:
 There are two ways of doing this. 
@@ -34,7 +34,7 @@ There are two ways of doing this.
 - okra.jar
 
 #### okra/dist/bin
-- libokra_x86_64.so
+- libokra\_x86\_64.so
 
 ### OKRA public headers:
 
@@ -58,9 +58,9 @@ runtime library and samples.
 - Install build-essential package: sudo apt-get install build-essential
 - Install libelf-dev package: sudo apt-get install libelf-dev
 - Setup the ENVIRONMENT by editing the following variables in okra/samples/env.sh (also see comments in env.sh)
-  -  HSA_OKRA_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/Okra-Interface-to-HSA-Device
-  -  HSA_RUNTIME_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Runtime-AMD
-  -  HSA_KMT_PATH: This should point to libhsakmt directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Drivers-Linux-AMD/tree/master/kfd-0.8/libhsakmt
+  -  HSA\_OKRA\_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/Okra-Interface-to-HSA-Device
+  -  HSA\_RUNTIME\_PATH: This should point to top of the directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Runtime-AMD
+  -  HSA\_KMT\_PATH: This should point to libhsakmt directory obtained after downloading from this github repo: https://github.com/HSAFoundation/HSA-Drivers-Linux-AMD/tree/master/kfd-0.8/libhsakmt
 
 #### Build OKRA samples
 - $cd okra/samples
@@ -81,15 +81,15 @@ The test should pass
 - If you want aparapi to use OKRA/HSA, refer to: http://code.google.com/p/aparapi/wiki/SettingUpLinuxHSAMachineForAparapi
 - If you want Sumatra (openJDK) to use OKRA/HSA, refer to https://wiki.openjdk.java.net/display/Sumatra/Main
 
-### FAQ
+### FAQs
 
-- I keep getting an error saying 'error while loading shared libraries: libokra_x86_64.so: cannot open shared object file: No such file or directory'. 
-  - Answer: The libokra_x86_64.so library directory isn't in the LD_LIBRARY_PATH or the version of libokra_x86_64.so is incorrect.
+- I keep getting an error saying 'error while loading shared libraries: libokra\_x86\_64.so: cannot open shared object file: No such file or directory'. 
+  - Answer: The libokra\_x86\_64.so library directory isn't in the LD\_LIBRARY\_PATH or the version of libokra\_x86\_64.so is incorrect.
 - I keep getting an error saying 'error while loading shared libraries: libhsa-runtime64.so.1: cannot open shared object file: No such file or directory'. 
-  - Answer: The libhsa-runtime64.so.1 library directory isn't in the LD_LIBRARY_PATH or the version of libhsa-runtime64.so.1 is incorrect.
+  - Answer: The libhsa-runtime64.so.1 library directory isn't in the LD\_LIBRARY\_PATH or the version of libhsa-runtime64.so.1 is incorrect.
 - I keep getting an error saying 'error while loading shared libraries: libhsakmt.so.1: cannot open shared object file: No such file or directory'. 
-  - Answer: The libhsakmt.so.1 library directory isn't in the LD_LIBRARY_PATH or the version of libhsamkt.so.1 is incorrect.
-- I can initialize the runtime, using hsa_init, but there is no GPU device. 
+  - Answer: The libhsakmt.so.1 library directory isn't in the LD\_LIBRARY\_PATH or the version of libhsamkt.so.1 is incorrect.
+- I can initialize the runtime, using hsa\_init, but there is no GPU device. 
   - Answer: The /dev/kfd device is not properly initialized or it has the wrong permissions assigned to it. The command 'ls -l /dev/kfd' will list the permission 
   on the kfd device. The device /dev/kfd should exist and have 0666 permissions assigned to it. Consult the HSA driver documentation for information on how to configure the kfd device.
 
