@@ -1,7 +1,7 @@
 OKRA is a runtime library that enables applications to do compute offloads to 
 HSA-enabled GPUs. OKRA provides a C interface now. check out okra.h.
 
-Note: Master branch always maps to the latest release - which is v0.8 at this point. For binaries and instructions from
+This branch is release-v0.8. For binaries and instructions from
 previous releases refer to other branches. You can do 'git branch -a' to see all
 branches, and switch to the preferred branch using command line  or use the web interface in github.com to choose the branch you want.
 
