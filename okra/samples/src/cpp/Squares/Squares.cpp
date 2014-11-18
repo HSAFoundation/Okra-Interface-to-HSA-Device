@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 	bool passed = true;
 	for (int i=0; i<NUMELEMENTS; i++) {
 	   cout << i << "->" << outArray[i] << ",  ";
-	   if (outArray[i] != i*i) passed = false;
+	   if (outArray[i] != (float)i*i) passed = false;
 	}
 
  	cout << endl << (passed ? "PASSED" : "FAILED") << endl;
