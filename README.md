@@ -59,8 +59,8 @@ runtime library and samples.
 * Install libelf-dev package: sudo apt-get install libelf-dev
 * Make sure HSA Runtime and libhsakmt are installed in /opt/hsa/
 #### Build OKRA samples
-* sudo cp okra/dist/bin/libokra_x86_64.so /opt/hsa/lib
-* sudo cp okra/dist/include/* /opt/hsa/include
+* sudo cp okra/dist/bin/libokra\_x86\_64.so /opt/hsa/lib
+* sudo cp okra/dist/include/okra.h /opt/hsa/include
 * $cd okra/samples
 * $./build.sh
 
@@ -81,8 +81,6 @@ The test should pass
 
 ### FAQs
 
-* I see build errors while doing ./build.sh
-    * Answer: Check the Environment variables setup in okra/samples/env.sh. Each variable should be setup as instructed in the comment above it.
 * I keep getting an error saying 'error while loading shared libraries: libokra\_x86\_64.so: cannot open shared object file: No such file or directory'. 
     * Answer: The libokra\_x86\_64.so library directory isn't in the LD\_LIBRARY\_PATH or the version of libokra\_x86\_64.so is incorrect.
 * I keep getting an error saying 'error while loading shared libraries: libhsa-runtime64.so.1: cannot open shared object file: No such file or directory'. 
@@ -95,6 +93,5 @@ The test should pass
 
 ### Known Issues
 
-* OKRA 32-bit binary is not available. Not tested and will be available in future
 * HSAIL 0.95 to HSAIL 1.0P instruction fix up is not for all universal set of HSAIL instructions. So it is possible to see new compilation (assembling) errors. 
 * More features like device query, linker capabilities do not exist with okra API. May be added in future if needed.
